@@ -1,17 +1,22 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "natyka/rating",
+    "description": "Laravel Eloquent Rating allows you to assign ratings to any model.",
     "keywords": [
-        ":vendor_name",
+        "eloquent",
         "laravel",
-        ":package_slug"
+        "model",
+        "rating",
+        "rate",
+        "stars",
+        "star",
+        "system"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/CodeNatyka/package-rating",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Natalia Gutierrez",
+            "email": "ngutierrez88@gmail.com",
             "role": "Developer"
         }
     ],
@@ -35,13 +40,12 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Natyka\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "Natyka\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -73,11 +77,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
-            }
+                "Natyka\\RatingServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
