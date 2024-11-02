@@ -14,7 +14,7 @@ trait CanBeRated
 {
 	public function qualifications(): HasMany
 	{
-		$hasMany = $this->hasMany(Rating::class, 'rateable_id');
+		$hasMany = $this->hasMany(config('rating.models.rating')::class, 'rateable_id');
 
 		return $hasMany
 			->where('rateable_type', $this->getMorphClass());

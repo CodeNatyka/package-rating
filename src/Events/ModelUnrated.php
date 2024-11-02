@@ -2,25 +2,27 @@
 
 namespace Natyka\Events;
 
+use Natyka\Contracts\Rateable;
+use Natyka\Contracts\Qualifier;
 use Illuminate\Database\Eloquent\Model;
 
 class ModelUnrated
 {
-	private Model $qualifier;
-	private Model $rateable;
+	private Qualifier $qualifier;
+	private Rateable $rateable;
 
-	public function __construct(Model $qualifier, Model $rateable)
+	public function __construct(Qualifier $qualifier, Rateable $rateable)
 	{
 		$this->qualifier = $qualifier;
 		$this->rateable = $rateable;
 	}
 
-	public function getQualifier(): Model
+	public function getQualifier(): Qualifier
 	{
 		return $this->qualifier;
 	}
 
-	public function getRateable(): Model
+	public function getRateable(): Rateable
 	{
 		return $this->rateable;
 	}

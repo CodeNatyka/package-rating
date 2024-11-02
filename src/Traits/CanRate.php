@@ -3,14 +3,12 @@
 namespace Natyka\Traits;
 
 use Natyka\Events\ModelRated;
-use Natyka\Events\ModelUnrated;
+use Natyka\Contracts\Rateable;
 use Natyka\Exceptions\InvalidScore;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 // Clase 9
 // Relaciones Polimórficas en Eloquent
-
 
 trait CanRate
 {
@@ -39,7 +37,7 @@ trait CanRate
 	}
 
 
-	public function rate(Model $model, float $score)
+	public function rate(Rateable $model, float $score)
 	{
 		// Esta validacion permite que solamente se pueda calificar una vez
 		if ($this->hasRated($model)) {
@@ -70,7 +68,7 @@ trait CanRate
 	}
 
 
-	public function unrate(Model $model): bool
+	public function unrate(Rateable $model): bool
 	{
 		if (!$this->hasRated($model)) {
 			return false;
@@ -84,7 +82,7 @@ trait CanRate
 	}
 
 
-	public function hasRated(Model $model)
+	public function hasRated(Rateable $model)
 	{
 		return !is_null($this->ratings($model->getMorphClass())->find($model->getKey()));
 	}

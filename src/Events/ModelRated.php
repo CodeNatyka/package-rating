@@ -11,7 +11,8 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-
+use Natyka\Contracts\Qualifier;
+use Natyka\Contracts\Rateable;
 
 // Clase 13: Eventos y Listeners en Laravel
 // php artisan make:event ModelRated
@@ -21,15 +22,15 @@ class ModelRated
 {
 	use Dispatchable, InteractsWithSockets, SerializesModels;
 
-	private Model $qualifier;
-	private Model $rateable;
+	private Qualifier $qualifier;
+	private Rateable $rateable;
 	private float $score;
 
 
 	/**
 	 * Create a new event instance.
 	 */
-	public function __construct(Model $qualifier, Model $rateable, float $score)
+	public function __construct(Qualifier $qualifier, Rateable $rateable, float $score)
 	{
 		$this->qualifier = $qualifier;
 		$this->rateable = $rateable;
@@ -39,12 +40,12 @@ class ModelRated
 	}
 
 
-	public function getQualifier(): Model
+	public function getQualifier(): Qualifier
 	{
 		return $this->qualifier;
 	}
 
-	public function getRateable(): Model
+	public function getRateable(): Rateable
 	{
 		return $this->rateable;
 	}
