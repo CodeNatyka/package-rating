@@ -9,21 +9,21 @@ use Natyka\Traits\CanRate;
 
 class User extends Authenticatable implements Rating
 {
-	use CanRate, CanBeRated;
+    use CanBeRated, CanRate;
 
-	protected $fillable = [
-		'name',
-		'email',
-		'password',
-	];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
 
-	protected $hidden = [
-		'password',
-		'remember_token',
-	];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-	public function name(): string
-	{
-		return $this->name;
-	}
+    public function name(): string
+    {
+        return $this->name;
+    }
 }

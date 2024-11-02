@@ -3,11 +3,9 @@
 namespace Natyka\Events;
 
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Foundation\Events\Dispatchable;
 use Natyka\Contracts\Qualifier;
 use Natyka\Contracts\Rateable;
 
@@ -16,50 +14,50 @@ use Natyka\Contracts\Rateable;
 
 class ModelRated
 {
-	use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable, InteractsWithSockets, SerializesModels;
 
-	private Qualifier $qualifier;
-	private Rateable $rateable;
-	private float $score;
+    private Qualifier $qualifier;
 
+    private Rateable $rateable;
 
-	/**
-	 * Create a new event instance.
-	 */
-	public function __construct(Qualifier $qualifier, Rateable $rateable, float $score)
-	{
-		$this->qualifier = $qualifier;
-		$this->rateable = $rateable;
-		$this->score = $score;
+    private float $score;
 
-		Log::info('ModelRated event fired.', ['qualifier' => $qualifier, 'rateable' => $rateable, 'score' => $score]);
-	}
+    /**
+     * Create a new event instance.
+     */
+    public function __construct(Qualifier $qualifier, Rateable $rateable, float $score)
+    {
+        $this->qualifier = $qualifier;
+        $this->rateable = $rateable;
+        $this->score = $score;
 
+        Log::info('ModelRated event fired.', ['qualifier' => $qualifier, 'rateable' => $rateable, 'score' => $score]);
+    }
 
-	public function getQualifier(): Qualifier
-	{
-		return $this->qualifier;
-	}
+    public function getQualifier(): Qualifier
+    {
+        return $this->qualifier;
+    }
 
-	public function getRateable(): Rateable
-	{
-		return $this->rateable;
-	}
+    public function getRateable(): Rateable
+    {
+        return $this->rateable;
+    }
 
-	public function getScore(): float
-	{
-		return $this->score;
-	}
+    public function getScore(): float
+    {
+        return $this->score;
+    }
 
-	/**
-	 * Get the channels the event should broadcast on.
-	 *
-	 * @return array<int, \Illuminate\Broadcasting\Channel>
-	 */
-	public function broadcastOn(): array
-	{
-		return [
-			new PrivateChannel('channel-name'),
-		];
-	}
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return array<int, \Illuminate\Broadcasting\Channel>
+     */
+    public function broadcastOn(): array
+    {
+        return [
+            new PrivateChannel('channel-name'),
+        ];
+    }
 }

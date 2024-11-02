@@ -13,7 +13,7 @@
 use Illuminate\Support\Str;
 
 $factory->define(\Natyka\Test\Models\Page::class, function () {
-	return [
-		'name' => 'Page' . Str::random(5),
-	];
+    return [
+        'name' => 'Page'.Str::random(5),
+    ];
 });

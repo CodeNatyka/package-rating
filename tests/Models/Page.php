@@ -9,14 +9,14 @@ use Natyka\Traits\CanRate;
 
 class Page extends Model implements Rating
 {
-	use CanRate, CanBeRated;
+    use CanBeRated, CanRate;
 
-	protected $fillable = [
-		'name',
-	];
+    protected $fillable = [
+        'name',
+    ];
 
-	public function name(): string
-	{
-		return $this->name;
-	}
+    public function name(): string
+    {
+        return $this->name;
+    }
 }

@@ -4,5 +4,5 @@ namespace Natyka\Traits;
 
 trait Rate
 {
-	use CanRate, CanBeRated;
+    use CanBeRated, CanRate;
 }
