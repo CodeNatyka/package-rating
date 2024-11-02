@@ -2,7 +2,7 @@
 
 namespace Natyka\Contracts;
 
-interface Rating extends Rateable, Qualifier
+interface Rating extends Qualifier, Rateable
 {
-	//
+    //
 }

@@ -3,30 +3,29 @@
 namespace Natyka\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Rating extends Pivot
 {
-	use HasFactory;
+    use HasFactory;
 
+    public $incrementing = true;
 
-	public $incrementing = true;
-	protected $table = "ratings";
+    protected $table = 'ratings';
 
-	public function rateable()
-	{
-		return $this->morphTo();
-	}
+    public function rateable()
+    {
+        return $this->morphTo();
+    }
 
-	public function qualifier()
-	{
-		return $this->morphTo();
-	}
+    public function qualifier()
+    {
+        return $this->morphTo();
+    }
 
-	public function approve()
-	{
-		$this->approved_at = Carbon::now();
-	}
+    public function approve()
+    {
+        $this->approved_at = Carbon::now();
+    }
 }

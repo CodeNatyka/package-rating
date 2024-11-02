@@ -2,13 +2,12 @@
 
 namespace Natyka\Traits;
 
-use Natyka\Models\Rating;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Natyka\Models\Rating;
 
 // Clase 9
 // Relaciones Polimórficas en Eloquent
-
 
 trait CanBeRated
 {
@@ -20,7 +19,6 @@ trait CanBeRated
 			->where('rateable_type', $this->getMorphClass());
 	}
 
-
 	public function qualifiers($model = null): MorphToMany
 	{
 		$modelClass = $model ? (new $model)->getMorphClass() : $this->getMorphClass();
@@ -31,9 +29,8 @@ trait CanBeRated
 			->wherePivot('rateable_type', $this->getMorphClass());
 	}
 
-
-	public function averageRating(string $model = null)
+	public function averageRating(?string $model = null)
 	{
-		return $this->qualifiers($model)->avg("score") ?: 0.0;
+		return $this->qualifiers($model)->avg('score') ?: 0.0;
 	}
 }

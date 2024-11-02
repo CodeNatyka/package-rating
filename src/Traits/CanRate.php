@@ -2,6 +2,8 @@
 
 namespace Natyka\Traits;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Natyka\Events\ModelRated;
 use Natyka\Contracts\Rateable;
 use Natyka\Exceptions\InvalidScore;
@@ -12,7 +14,6 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait CanRate
 {
-
 	public function ratings($model = null): MorphToMany
 	{
 
@@ -20,18 +21,18 @@ trait CanRate
 
 		$morphToMany = $this->morphToMany(
 			$modelClass,	// clase con que quiero relacionaerme
-			"qualifier",	// nombre de la relacion
-			"ratings",		// nombre de la tabla
-			"qualifier_id",	// columna con la cual hago realcion
-			"rateable_id"	// columna con que quiero relacionarme
+			'qualifier',	// nombre de la relacion
+			'ratings',		// nombre de la tabla
+			'qualifier_id',	// columna con la cual hago realcion
+			'rateable_id'	// columna con que quiero relacionarme
 		);
 
 		$morphToMany
-			->as("rating")
+			->as('rating')
 			->withTimestamps()
-			->withPivot("score", "rateable_type") // cada vez que llame la relacion devuelve estos campos
-			->wherePivot("rateable_type", $modelClass)
-			->wherePivot("qualifier_type", $this->getMorphClass());
+			->withPivot('score', 'rateable_type') // cada vez que llame la relacion devuelve estos campos
+			->wherePivot('rateable_type', $modelClass)
+			->wherePivot('qualifier_type', $this->getMorphClass());
 
 		return $morphToMany;
 	}
@@ -47,16 +48,15 @@ trait CanRate
 
 		// Clase 19: Excepciones personalizadas
 		// php artisan make:exception InvalidScore
-		$from = config("rating.from");
-		$to = config("rating.to");
+		$from = config('rating.from');
+		$to = config('rating.to');
 		if ($score < $from || $score > $to) {
 			throw new InvalidScore($from, $to);
 		}
 
-
 		$this->ratings($model)->attach($model->getKey(), [
-			"score" => $score,
-			"rateable_type" => get_class($model)
+			'score' => $score,
+			'rateable_type' => get_class($model),
 		]);
 
 		// Clase 13: Eventos y Listeners en Laravel

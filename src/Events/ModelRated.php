@@ -2,12 +2,9 @@
 
 namespace Natyka\Events;
 
-use Illuminate\Support\Facades\Log;
-use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -16,7 +13,6 @@ use Natyka\Contracts\Rateable;
 
 // Clase 13: Eventos y Listeners en Laravel
 // php artisan make:event ModelRated
-
 
 class ModelRated
 {
@@ -54,7 +50,6 @@ class ModelRated
 	{
 		return $this->score;
 	}
-
 
 	/**
 	 * Get the channels the event should broadcast on.
